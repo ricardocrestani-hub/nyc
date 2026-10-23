@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>NYC 30/10 a 05/11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: placa de estação do metrô — faixa preta no topo, linhas coloridas por dia, lista de paradas como mapa de linha */
+:root{
+  --bg:#f3f3ef; --surface:#ffffff; --fg:#141414; --muted:#5e605c; --rule:#d9dad4;
+  --band:#141414; --bandfg:#f7f7f2; --done:#9a9c96; --opt:#8a8c86; --optbg:transparent;
+  --l1:#ee352e; --l2:#0039a6; --l3:#00933c; --l4:#ff6319; --l5:#b933ad; --l6:#996633; --l7:#6cbe45;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121311;--surface:#1b1c1a;--fg:#ecece6;--muted:#a2a49d;--rule:#2e302c;--band:#000;--bandfg:#f7f7f2;--done:#6d6f69;--opt:#8c8e88;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121311;--surface:#1b1c1a;--fg:#ecece6;--muted:#a2a49d;--rule:#2e302c;--band:#000;--bandfg:#f7f7f2;--done:#6d6f69;--opt:#8c8e88;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--band);color:var(--bandfg);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header .wrap{padding-block:14px 10px}
+h1{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em;margin:0}
+.sub{font-size:.8rem;opacity:.7;margin-top:2px}
+nav{display:flex;gap:8px;overflow-x:auto;padding-block:12px 4px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:var(--bandfg);font:500 .72rem var(--body);padding:2px 2px 6px;cursor:pointer;border-bottom:2px solid transparent;opacity:.6}
+nav button[aria-selected="true"]{opacity:1;border-bottom-color:var(--bandfg)}
+nav button:focus-visible{outline:2px solid var(--bandfg);outline-offset:2px}
+.bullet{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 1rem var(--display)}
+main .wrap{padding-block:18px 48px;display:flex;flex-direction:column;gap:16px}
+.dayhead{display:flex;gap:12px;align-items:flex-start}
+.dayhead .bullet{width:44px;height:44px;font-size:1.3rem;flex:0 0 auto}
+.dayhead h2{font-family:var(--display);font-weight:800;font-size:1.35rem;margin:0;text-wrap:balance}
+.dayhead p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font:600 .85rem var(--body);padding:9px 14px;border-radius:999px;border:1.5px solid var(--fg);color:var(--fg);background:var(--surface);cursor:pointer}
+.btn.primary{background:var(--fg);color:var(--bg)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.76rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:50%;border:3px solid var(--fg);display:inline-block}
+.sw.o{border-style:dashed;border-color:var(--opt)}
+ol.line{list-style:none;margin:0;padding:0;position:relative}
+ol.line::before{content:"";position:absolute;left:21px;top:14px;bottom:14px;width:6px;border-radius:3px;background:var(--line)}
+.stop{display:grid;grid-template-columns:48px 1fr;column-gap:10px;padding-block:4px}
+.move{grid-column:2;font:500 .74rem var(--mono);color:var(--muted);padding:2px 0 6px 2px;display:flex;gap:6px;align-items:center}
+.move b{font-weight:600;color:var(--fg);font-family:var(--body);font-size:.74rem;text-transform:uppercase;letter-spacing:.05em}
+.move.walk b{color:var(--l3)}
+.dot{grid-column:1;width:20px;height:20px;border-radius:50%;background:var(--surface);border:4px solid var(--line);margin:6px 0 0 14px;position:relative;z-index:1;cursor:pointer;padding:0}
+.stop.done .dot{background:var(--line)}
+.dot:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.card{grid-column:2;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.time{font:500 .78rem var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.name{font:700 1rem var(--display);margin:0}
+.note{font-size:.86rem;color:var(--muted);margin:0}
+.note strong{color:var(--fg);font-weight:600}
+.tag{font:600 .66rem var(--body);text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.tag.opt{border-style:dashed;border-color:var(--opt);color:var(--opt)}
+.maps{align-self:flex-start;font:600 .8rem var(--body);color:var(--fg);text-decoration:underline;text-underline-offset:3px;margin-top:2px}
+.stop.opt .card{background:var(--optbg);border-style:dashed}
+.stop.opt .name{color:var(--opt);font-weight:600;font-style:italic}
+.stop.opt .dot{border-style:dashed;border-color:var(--opt)}
+.stop.opt .maps{color:var(--opt)}
+.stop.done .name,.stop.done .note{color:var(--done);text-decoration:line-through}
+section.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+section.panel h3{font:800 1rem var(--display);margin:0 0 8px}
+section.panel ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.hint{font-size:.78rem;color:var(--muted);margin:0}
+</style>
+
+
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>NYC · 30/10 a 05/11</h1>
+    <div class="sub">Toque no círculo para marcar como feito · “Maps” abre o Google Maps</div>
+    <nav id="tabs" role="tablist" aria-label="Dias"></nav>
+  </div>
+</header>
+<main><div class="wrap" id="view"></div></main>
+
+<script>
+const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY";
+// [hora, nome, endereço, nota, tag, deslocamento desde a parada anterior, opcional]
+const DAYS=[
+{k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"Nolita, Chelsea e West Village",c:"--l1",stops:[
+["12:00","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","Início do dia"],
+["12:30","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min"],
+["13:00","L'Industrie Little Italy","197 Grand St"+C,"Almoço: fatia de burrata","comida","A pé · 8 min"],
+["13:45","&Son","138 Sullivan St"+C,"Menswear independente, cerâmica, livros e vintage; aberta 11h–19h","compra","A pé · 15 min"],
+["14:30","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada","compra","A pé · 15 min"],
+["15:00","C.O. Bigelow","414 6th Ave"+C,"<strong>Perfume principal:</strong> Arquiste Sydney Rock Pool","perfume","A pé · 5 min"],
+["15:45","Comme des Garçons","Comme des Garcons Chelsea"+C,"<strong>Perfume principal:</strong> CDG Hinoki e Odeur 53","perfume","A pé · ~25 min, ou metrô ~15 min"],
+["16:15","High Line + Chelsea Market","Chelsea Market 75 9th Ave"+C,"Descer o High Line com lanche rápido","passeio","A pé · 5 min"],
+["17:00","Whitney Museum","99 Gansevoort St"+C,"Vá direto aos terraços","museu","A pé · 10 min"],
+["17:45","Little Island","Little Island Pier 55"+C,"Pôr do sol por volta de 17h50","passeio","A pé · 5 min"],
+["19:30","Julius'","159 W 10th St"+C,"Jantar: hambúrguer","comida","A pé · 15 min"],
+["21:00","Stonewall Inn","53 Christopher St"+C,"Drink","bar","A pé · 3 min"]]},
+{k:"sab",n:"2",lbl:"Sáb 31",title:"Sábado 31/10",sub:"Met, Central Park e Halloween",c:"--l4",stops:[
+["8:30","Lexington Candy Shop","1226 Lexington Ave"+C,"Café da manhã em diner clássico","comida","Início do dia"],
+["10:00","The Met","1000 5th Ave"+C,"Escolha 3 ou 4 alas","museu","A pé · 8 min"],
+["13:30","Bethesda Terrace","Bethesda Terrace Central Park"+C,"Central Park e o Ramble","passeio","A pé · 15 min"],
+["14:15","Gray's Papaya","2090 Broadway"+C,"Cachorro-quente","comida","A pé · 15 min, atravessando o parque"],
+["14:45","Museu de História Natural","200 Central Park West"+C,"Dinossauros e Rose Center","museu","A pé · 10 min",1],
+["16:30","Hotel","","Fantasia","","Metrô"],
+["17:45","Balthazar","80 Spring St"+C,"Jantar (reserva). Plano B: Hamburger America","comida","Metrô"],
+["19:00","Village Halloween Parade","Canal St and 6th Ave"+C,"Fila para desfilar: 18h30 a 21h","passeio","A pé · 10 min"],
+["23:00","Wo Hop","17 Mott St"+C,"Cantonês tarde da noite","comida","A pé · ~20 min"]]},
+{k:"dom",n:"3",lbl:"Dom 01",title:"Domingo 01/11",sub:"Brooklyn, NoMad e Williamsburg · o relógio volta 1 hora",c:"--l3",stops:[
+["10:00","Katz's Delicatessen","205 E Houston St"+C,"Brunch de pastrami","comida","Início do dia"],
+["11:15","Brooklyn Bridge","Brooklyn Bridge pedestrian walkway"+C,"Travessia a pé, ~35 min","passeio","Metrô · ~15 min até a ponte"],
+["12:00","DUMBO","Washington St and Water St"+B,"Foto clássica da Washington St","passeio","A pé · fim da ponte"],
+["12:30","Ven.Space","369 Court St"+B,"Lemaire, Comoli, The Row · Carroll Gardens; aberta 12h–18h","compra","Metrô · linha F York St → Carroll St, ~10 min + 5 a pé",1],
+["13:40","Rockefeller Center","Rockefeller Center"+C,"Com a amiga, até o teatro dela","passeio","Metrô · linha F direto, ~35 min (~25 se pular a Ven.Space)"],
+["13:45","Bryant Park","Bryant Park"+C,"Café ou lanche leve","passeio","A pé · 10 min"],
+["14:50","Issey Miyake","45 Madison Ave"+C,"IM Men e Homme Plissé; confirmar horário","compra","Metrô · ~10 min, ou a pé ~20 min"],
+["15:25","Dover Street Market","160 Lexington Ave"+C,"Compras. Perfumes CDG só se não resolveu na sexta","compra","A pé · 8 min"],
+["16:35","Domino Park","Domino Park"+B,"Pôr do sol por volta de 16h45","passeio","Metrô · linhas 6 e L, ~35 min + 15 min a pé"],
+["17:10","Stéle Williamsburg","339 Bedford Ave"+B,"Arquiste, só se não resolveu na C.O. Bigelow; fecha 18h","perfume","A pé · 8 min",1],
+["17:45","Aesop Williamsburg","85 N 3rd St"+B,"Aesop Hwyl, se não passou na Aesop de segunda","perfume","A pé · 12 min",1],
+["18:15","The Four Horsemen","295 Grand St"+B,"Jantar (reserva no Resy)","comida","A pé · 10 min"]]},
+{k:"seg",n:"4",lbl:"Seg 02",title:"Segunda 02/11",sub:"Midtown",c:"--l2",stops:[
+["9:00","S&P Lunch","174 5th Ave"+C,"Café da manhã de balcão","comida","Início do dia"],
+["10:30","Bergdorf Goodman","754 5th Ave"+C,"Perfume DVN Cannabis Patchouli e loja masculina em frente","perfume","Metrô · ~15 min",1],
+["11:30","Uniqlo 5th Avenue","Uniqlo Fifth Avenue"+C,"Flagship; ver aba Compras","compra","A pé · 7 min (ou metrô ~15 min, se pular a Bergdorf)"],
+["12:00","Aesop Rockefeller Center","610 5th Ave"+C,"Aesop Hwyl","perfume","A pé · 5 min",1],
+["12:15","Nintendo NY","10 Rockefeller Plaza"+C,"","compra","A pé · 2 min"],
+["12:40","Rough Trade NYC","1250 6th Ave"+C,"Vinil","compra","A pé · 3 min",1],
+["13:00","Muji Fifth Avenue","475 5th Ave"+C,"Ver aba Compras","compra","A pé · 12 min"],
+["13:45","Gallaghers","228 W 52nd St"+C,"Almoço: 3 pratos por $34","comida","A pé · ~20 min, ou metrô ~10 min"],
+["14:30","MoMA","11 W 53rd St"+C,"Até o fechamento","museu","A pé · 10 min"],
+["17:30","The Modern","9 W 53rd St"+C,"Drink no Bar Room","bar","Mesmo prédio"],
+["19:30","Top of the Rock","30 Rockefeller Plaza"+C,"Vista noturna","passeio","A pé · 7 min"],
+["20:15","Macy's Herald Square","151 W 34th St"+C,"Para a amiga; confirmar horário","compra","Metrô · ~10 min"],
+["21:00","Jongro BBQ","Jongro BBQ 22 W 32nd St"+C,"Sem reserva, lista de espera","comida","A pé · 5 min"]]},
+{k:"ter",n:"5",lbl:"Ter 03",title:"Terça 03/11",sub:"Chinatown, ferry até Greenpoint e Rocky Horror",c:"--l5",stops:[
+["9:30","Golden Diner","123 Madison St"+C,"Café da manhã; costuma ter fila","comida","Início do dia"],
+["11:00","Doyers Street","Doyers St"+C,"Chinatown a pé: Mott St e Columbus Park","passeio","A pé · 10 min"],
+["12:30","Nom Wah Tea Parlor","13 Doyers St"+C,"Dividir alguns dim sums","comida","A pé"],
+["13:15","Joe's Shanghai","Joe's Shanghai Chinatown"+C,"Xiaolongbao","comida","A pé · 3 min"],
+["14:00","Pier 11 (Wall St)","Pier 11 Wall Street ferry"+C,"NYC Ferry East River até Greenpoint, ~25 min","ferry","A pé · ~20 min"],
+["14:45","Bellocq Tea Atelier","104 West St"+B,"Aberta até 18h","compra","A pé · 2 min do píer"],
+["15:30","Ferry Greenpoint → E 34th St","Greenpoint India St ferry landing"+B,"Uma parada, ~10 min","ferry","A pé · 2 min"],
+["16:00","Sarge's Deli","548 3rd Ave"+C,"Pastrami ou sopa de matzá","comida","A pé · 10 min do píer"],
+["19:00","The Rocky Horror Show","Studio 54 254 W 54th St"+C,"Studio 54","teatro","Metrô · ~25 min"],
+["21:30","Jimmy's Corner","140 W 44th St"+C,"Bar raiz com tema de boxe","bar","A pé · 12 min"]]},
+{k:"qua",n:"6",lbl:"Qua 04",title:"Quarta 04/11",sub:"Queens, East Village e Hell's Kitchen",c:"--l6",stops:[
+["9:30","Court Square Diner","Court Square Diner"+Q,"Café da manhã","comida","Início do dia"],
+["10:30","Noguchi Museum","9-01 33rd Rd"+Q,"","museu","Ônibus Q103 · ~15 min"],
+["13:00","Momofuku Noodle Bar","171 1st Ave"+C,"Almoço; reserva abre 21/10 às 11h (Brasília)","comida","Ônibus + metrô · ~40 min"],
+["14:00","Tokio 7","Tokio 7 E 7th St"+C,"Brechó de marcas japonesas","compra","A pé · 7 min"],
+["14:45","A-1 Record Shop","A-1 Record Shop E 6th St"+C,"Vinil usado","compra","A pé · 5 min",1],
+["15:15","C'H'C'M'","2 Bond St"+C,"Menswear independente de alto padrão; confirmar horário","compra","A pé · ~15 min"],
+["16:00","3sixteen","190 Elizabeth St"+C,"Retirar o jeans; fecha 19h","compra","A pé · ~10 min"],
+["17:30","Pure Thai Cookhouse","766 9th Ave"+C,"Jantar. Upgrade: Sky Pavilion","comida","Metrô · ~30 min"],
+["19:00","Little Shop of Horrors","Westside Theatre 407 W 43rd St"+C,"Westside Theatre","teatro","A pé · 12 min"],
+["21:00","Rudy's Bar & Grill","627 9th Ave"+C,"E os bares da 9th Ave","bar","A pé · 3 min"]]},
+{k:"qui",n:"7",lbl:"Qui 05",title:"Quinta 05/11",sub:"Despedida",c:"--l7",stops:[
+["9:00","Russ & Daughters","179 E Houston St"+C,"Bagel com salmão","comida","Início do dia"],
+["10:30","Washington Square Park","Washington Square Park"+C,"Greenwich Village a pé","passeio","A pé · 20 min"],
+["12:30","Keens Steakhouse","72 W 36th St"+C,"Almoço de despedida (reserva)","comida","Metrô · ~15 min"],
+["Tarde","Pendências","","Compras que ficaram para trás","",""],
+["Noite","Aeroporto","","","",""]]},
+{k:"compras",n:"$",lbl:"Compras",title:"Lista de compras",sub:"Uniqlo e Muji ficam na segunda, 02/11",c:"--fg",shop:true},
+{k:"antes",n:"✓",lbl:"Antes",title:"Antes de ir",sub:"Ingressos, reservas e horários",c:"--fg",check:true}
+];
+const TODO=["Rocky Horror Show (Studio 54), terça 03/11","Little Shop of Horrors, quarta 04/11","Top of the Rock, noite de segunda","MoMA, segunda à tarde","Reserva: Four Horsemen (domingo)","Reserva: Balthazar (sábado)","Reserva: Keens (quinta)","Reserva: Momofuku (abre 21/10)","Horários do NYC Ferry na terça (app NYC Ferry)","Hora marcada na J. Mueser (sexta)","Fantasia para a parada","Horários: Issey Miyake no domingo, C.O. Bigelow, C'H'C'M', Macy's, Noguchi"];
+
+const SHOP=[
+{store:"3sixteen",when:"Sexta, 12:00 · retirada na quarta, 16:00",items:[
+["RS-105xk Relaxed Straight · Heavyweight Indigo Kibata","Selvedge 18oz de Okayama · cintura estica ~1–1,5\" com o uso: na dúvida, prove o menor · pedir barra chain stitch e o prazo","$310","https://www.3sixteen.com/collections/denim/products/rs-105xk-relaxed-straight-heavyweight-indigo-kibata"]]},
+{store:"Perfumes",when:"CDG Chelsea e C.O. Bigelow ficam na sexta, 30/10",items:[
+["CDG Hinoki","CDG Chelsea (sexta, 15:45) · e/ou Odeur 53 · 2ª chance: DSM no domingo","≈ $150–190",""],
+["CDG Odeur 53","CDG Chelsea (sexta, 15:45) · e/ou Hinoki · mais difícil de achar","≈ $150–190",""],
+["Arquiste Sydney Rock Pool","C.O. Bigelow (sexta, 15:00) · 2ª chance: Stéle no domingo","$225",""],
+["Aesop Hwyl (opcional)","Aesop Rockefeller Center (segunda, 12:00) ou Aesop Williamsburg (domingo)","",""],
+["Dries Van Noten Cannabis Patchouli (opcional)","Bergdorf Goodman (segunda, 10:30)","",""]]},
+{store:"Uniqlo 5th Avenue",when:"Segunda, 11:30",items:[
+["Barrel Jeans | Corduroy","Brown · 30","≈ $50","https://www.uniqlo.com/us/en/products/E487207-000/00?colorDisplayCode=34&sizeDisplayCode=030"],
+["Flannel Shirt","Dark Green · S","≈ $40","https://www.uniqlo.com/us/en/products/E488795-000/00?colorDisplayCode=58&sizeDisplayCode=003"],
+["Straight Jeans | Selvedge | Tall","Navy · 29 · Tall costuma ser só online","≈ $60","https://www.uniqlo.com/us/en/products/E488686-000/00?colorDisplayCode=69&sizeDisplayCode=029"],
+["Cashmere Sweater","Olive · M · acima de $110, paga imposto","≈ $130","https://www.uniqlo.com/us/en/products/E450543-000/00?colorDisplayCode=56&sizeDisplayCode=004"],
+["Easy Care Soft Shirt","Olive · M","≈ $40","https://www.uniqlo.com/us/en/products/E486614-000/00?colorDisplayCode=57&sizeDisplayCode=004"],
+["Italian Leather Long Belt","Black · M","≈ $40","https://www.uniqlo.com/us/en/products/E489493-000/00?colorDisplayCode=09&sizeDisplayCode=004"],
+["AIRism Cotton Oversized T-Shirt | Half-Sleeve","Dark Brown · S","≈ $20","https://www.uniqlo.com/us/en/products/E465185-000/00?colorDisplayCode=39&sizeDisplayCode=003"],
+["Meias","Pretas + cores novas","≈ $15–30",""],
+["Cuecas","3 unidades","≈ $30–45",""],
+["Guarda-chuva e acessórios","Só olhar","",""]]},
+{store:"Muji Fifth Avenue",when:"Segunda, 13:00",items:[
+["Padded Hanten Jacket","Khaki Green ou Black","$89.90","https://www.muji.us/products/padded-hanten-jacket-ad10g26a"],
+["Straight Design Knot Button Shirt","Navy, Light Gray Stripe ou Mocha Brown Stripe · estoque online instável","$49.90","https://www.muji.us/products/straight-design-knot-button-shirt-ac25026a"],
+["Hakama Pants","Black · S · esgotado online, ver na loja","$79.90","https://www.muji.us/products/hakama-pants-ae12h26a?variant=47679426035902"]]}
+];
+function renderShop(){return SHOP.map((s,si)=>`<section class="panel"><h3>${esc(s.store)}</h3><p class="hint" style="margin-bottom:8px">${esc(s.when)}</p><ol class="line" style="--line:var(--rule)">`+s.items.map((it,j)=>{const id="shop-"+si+"-"+j,on=store[id];return `<li class="stop ${on?"done":""}"><button class="dot" data-id="${id}" aria-pressed="${!!on}" aria-label="Marcar ${esc(it[0])} como comprado"></button><div class="card"><div class="top"><p class="name" style="font-size:.92rem">${esc(it[0])}</p>${it[2]?`<span class="time">${esc(it[2])}</span>`:""}</div><p class="note">${esc(it[1])}</p>${it[3]?`<a class="maps" href="${it[3]}" target="_blank" rel="noopener">Ver no site</a>`:""}</div></li>`}).join("")+`</ol></section>`).join("")+`<section class="panel"><h3>Estimativa</h3><ul><li>Uniqlo: ≈ $430–470, contando meias e cuecas</li><li>Muji: ≈ $220</li><li>3sixteen: $310 + imposto ≈ $340</li><li>Perfumes: ≈ $390–660, conforme leve 1 ou 2 CDG, com imposto</li><li><strong>Total: ≈ $1.380–1.690</strong></li></ul><p class="hint" style="margin-top:8px">Preços da Uniqlo são aproximados. Tamanhos vieram dos links; confira na loja. Roupas abaixo de $110 por peça não pagam imposto em NY; perfumes pagam 8,875%.</p></section>`;}
+
+const q=s=>encodeURIComponent(s);
+const mapsUrl=a=>"https://www.google.com/maps/search/?api=1&query="+q(a);
+function routeUrl(stops){const a=stops.filter(s=>!s[6]).map(s=>s[2]).filter(Boolean);if(a.length<2)return null;
+  let u="https://www.google.com/maps/dir/?api=1&travelmode=transit&origin="+q(a[0])+"&destination="+q(a[a.length-1]);
+  const mid=a.slice(1,-1).slice(0,8);if(mid.length)u+="&waypoints="+q(mid.join("|"));return u;}
+let store={};try{store=JSON.parse(localStorage.getItem("nyc-done")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("nyc-done",JSON.stringify(store))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rich=s=>esc(s).replace(/&lt;strong&gt;(.*?)&lt;\/strong&gt;/g,"<strong>$1</strong>");
+
+const tabs=document.getElementById("tabs"),view=document.getElementById("view");
+DAYS.forEach((d,i)=>{const b=document.createElement("button");b.role="tab";b.id="tab-"+d.k;
+  b.innerHTML=`<span class="bullet" style="background:var(${d.c});${(d.check||d.shop)?"color:var(--band)":""}">${d.n}</span>${d.lbl}`;
+  b.onclick=()=>show(i);tabs.appendChild(b);});
+
+function moveHtml(m){if(!m)return"";const walk=/^A pé|^Mesmo/.test(m);const [mode,rest]=m.split(" · ");
+  return `<div class="move ${walk?"walk":""}"><span aria-hidden="true">↓</span><b>${esc(mode)}</b>${rest?esc(rest):""}</div>`;}
+
+function show(i){const d=DAYS[i];
+  [...tabs.children].forEach((b,j)=>b.setAttribute("aria-selected",j===i));
+  try{localStorage.setItem("nyc-tab",i)}catch(e){}
+  let h=`<div class="dayhead"><span class="bullet" style="background:var(${d.c});${(d.check||d.shop)?"color:var(--bg)":""}">${d.n}</span><div><h2>${esc(d.title)}</h2><p>${esc(d.sub)}</p></div></div>`;
+  if(d.shop){h+=renderShop();}
+  else if(d.check){h+=`<section class="panel"><h3>Garantir antes da viagem</h3><ol class="line" style="--line:var(--rule)">`+
+    TODO.map((t,j)=>{const id="todo-"+j,on=store[id];return `<li class="stop ${on?"done":""}"><button class="dot" data-id="${id}" aria-pressed="${!!on}" aria-label="Marcar ${esc(t)}"></button><div class="card"><p class="name" style="font-size:.92rem">${esc(t)}</p></div></li>`}).join("")+
+    `</ol></section><section class="panel"><h3>Perfumes: onde testar</h3><ul><li>CDG Hinoki e Odeur 53: CDG Chelsea (sexta). 2ª chance: DSM (domingo)</li><li>Arquiste Sydney Rock Pool: C.O. Bigelow (sexta). 2ª chance: Stéle Williamsburg (domingo)</li><li>Opcional — Aesop Hwyl: Aesop Rockefeller Center (segunda) ou Aesop Williamsburg (domingo)</li><li>Opcional — Dries Van Noten Cannabis Patchouli: Bergdorf Goodman (segunda)</li></ul></section><section class="panel"><h3>Lembretes</h3><ul><li>Metrô: encoste sempre o mesmo cartão ou celular na catraca (OMNY). A semana sai por cerca de $35.</li><li>Domingo 01/11 acaba o horário de verão: o relógio volta 1 hora.</li><li>Clima: 8 a 15 °C com vento. Camadas e tênis confortável.</li></ul></section>`;}
+  else{const r=routeUrl(d.stops);
+    h+=`<div class="actions">${r?`<a class="btn primary" href="${r}" target="_blank" rel="noopener">Rota do dia no Maps</a>`:""}<div class="legend"><span><i class="sw"></i>principal</span><span><i class="sw o"></i>opcional</span></div></div>`;
+    h+=`<ol class="line" style="--line:var(${d.c})">`+d.stops.map((s,j)=>{const id=d.k+"-"+j,on=store[id],opt=!!s[6];
+      return `<li class="stop ${on?"done":""} ${opt?"opt":""}">${moveHtml(s[5])}<button class="dot" data-id="${id}" aria-pressed="${!!on}" aria-label="Marcar ${esc(s[1])} como feito"></button><div class="card"><div class="top"><span class="time">${esc(s[0])}</span><span style="display:flex;gap:6px">${opt?`<span class="tag opt">opcional</span>`:""}${s[4]?`<span class="tag">${esc(s[4])}</span>`:""}</span></div><p class="name">${esc(s[1])}</p>${s[3]?`<p class="note">${rich(s[3])}</p>`:""}${s[2]?`<a class="maps" href="${mapsUrl(s[2])}" target="_blank" rel="noopener">Maps</a>`:""}</div></li>`}).join("")+`</ol>`;
+    h+=`<p class="hint">A rota do dia ignora as paradas opcionais e mostra até 10 por vez; use “Maps” em cada parada para o resto.</p>`;}
+  view.innerHTML=h;
+  view.querySelectorAll(".dot").forEach(b=>b.onclick=()=>{const id=b.dataset.id;store[id]=!store[id];if(!store[id])delete store[id];save();
+    b.setAttribute("aria-pressed",!!store[id]);b.closest(".stop").classList.toggle("done",!!store[id]);});
+  document.getElementById("tab-"+d.k).scrollIntoView({inline:"center",block:"nearest"});
+}
+let start=0;const today=new Date(),dates=["2026-10-30","2026-10-31","2026-11-01","2026-11-02","2026-11-03","2026-11-04","2026-11-05"];
+const iso=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+if(dates.includes(iso))start=dates.indexOf(iso);else{try{const t=+localStorage.getItem("nyc-tab");if(t>=0&&t<DAYS.length)start=t}catch(e){}}
+show(start);
+</script>
+
+
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+
+</body>
+</html>
