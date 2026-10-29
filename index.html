@@ -95,7 +95,7 @@ section.panel ul{margin:0;padding-left:18px;display:flex;flex-direction:column;g
 const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY", H="Freehand New York, 23 Lexington Ave, New York, NY";
 // [hora, nome, endereço, nota, tag, deslocamento desde a parada anterior, opcional]
 const DAYS=[
-{k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"Nolita, Chelsea e West Village",c:"--l1",stops:[
+{k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"SoHo e Village, soneca, jantar no amigo e festa no Brooklyn",c:"--l1",stops:[
 ["Manhã","Chegada ao Freehand",H,"Deixar as malas; o check-in costuma ser à tarde","hotel","Do JFK: AirTrain + metrô · ~75 min"],
 ["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","Metrô · linha 6 de 23 St até Spring St, ~15 min"],
 ["12:40","Uniqlo SoHo","546 Broadway"+C,"Flagship global; ver aba Compras","compra","A pé · 5 min"],
@@ -104,13 +104,9 @@ const DAYS=[
 ["14:30","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min",1],
 ["15:00","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada às 15h","compra","Metrô · ~20 min"],
 ["15:30","C.O. Bigelow","414 6th Ave"+C,"<strong>Perfume principal:</strong> Arquiste Sydney Rock Pool","perfume","A pé · 5 min"],
-["16:15","Comme des Garçons","Comme des Garcons Chelsea"+C,"<strong>Perfume principal:</strong> CDG Hinoki e Odeur 53","perfume","A pé · ~25 min, ou metrô ~15 min"],
-["16:45","High Line + Chelsea Market","High Line W 23rd St entrance"+C,"Descer até a Gansevoort St, com lanche no Chelsea Market","passeio","A pé · 2 min"],
-["17:40","Little Island","Little Island Pier 55"+C,"Pôr do sol por volta de 17h50","passeio","A pé · 5 min"],
-["18:15","Respiro no West Village","Bleecker St and Bank St"+C,"Tempo livre: um café, um drink ou voltar ao hotel antes do jantar","passeio","A pé · 10 min"],
-["19:45","Julius'","159 W 10th St"+C,"Jantar: hambúrguer","comida","A pé · 15 min"],
-["21:00","Stonewall Inn","53 Christopher St"+C,"Drink","bar","A pé · 3 min"],
-["Fim","Volta ao Freehand",H,"","hotel","Metrô · F/M de W 4th St até 23 St + 10 min a pé, ~20 min (ou a pé ~30 min)"]]},
+["16:00","Freehand: compras e soneca",H,"Deixar as sacolas e descansar","hotel","Metrô · F/M de W 4th St até 23 St + 10 min a pé, ~20 min"],
+["17:30","Jantar na casa do amigo","","No pôr do sol, por volta de 17h50","comida","Endereço a definir"],
+["Noite","Festa no Brooklyn","","","bar","Endereço a definir"]]},
 {k:"sab",n:"2",lbl:"Sáb 31",title:"Sábado 31/10",sub:"Central Park, Museu de História Natural e Halloween nas ruas",c:"--l4",stops:[
 ["8:30","Lexington Candy Shop","1226 Lexington Ave"+C,"Café da manhã em diner clássico","comida","Metrô · linha 6 de 23 St até 86 St, ~20 min"],
 ["9:15","Central Park","Bethesda Terrace Central Park"+C,"Atravessar pelo Bethesda Terrace e o Ramble até o museu","passeio","A pé · ~40 min, passeando"],
@@ -130,7 +126,7 @@ const DAYS=[
 ["13:40","Rockefeller Center","Rockefeller Center"+C,"Com a amiga, até o teatro dela","passeio","Metrô · linha F direto, ~35 min (~25 se pular a Ven.Space)"],
 ["13:45","Bryant Park","Bryant Park"+C,"Café ou lanche leve","passeio","A pé · 10 min"],
 ["14:50","Issey Miyake","45 Madison Ave"+C,"IM Men e Homme Plissé; confirmar horário","compra","Metrô · ~10 min, ou a pé ~20 min"],
-["15:25","Dover Street Market","160 Lexington Ave"+C,"Compras. Perfumes CDG só se não resolveu na sexta","compra","A pé · 8 min"],
+["15:25","Dover Street Market","160 Lexington Ave"+C,"Compras. <strong>Perfume principal:</strong> CDG Hinoki e Odeur 53","perfume","A pé · 8 min"],
 ["16:35","Domino Park","Domino Park"+B,"Pôr do sol por volta de 16h45","passeio","Metrô · linhas 6 e L, ~35 min + 15 min a pé"],
 ["17:10","Stéle Williamsburg","339 Bedford Ave"+B,"Arquiste, só se não resolveu na C.O. Bigelow; fecha 18h","perfume","A pé · 8 min",1],
 ["17:45","Aesop Williamsburg","85 N 3rd St"+B,"Aesop Hwyl, se não passou na Aesop de segunda","perfume","A pé · 12 min",1],
@@ -181,9 +177,12 @@ const DAYS=[
 ["Fim","Volta ao Freehand",H,"","hotel","Metrô · linha 7 de Times Sq até Grand Central e linha 6 até 23 St, ~25 min"]]},
 {k:"qui",n:"7",lbl:"Qui 05",title:"Quinta 05/11",sub:"Despedida",c:"--l7",stops:[
 ["9:00","Russ & Daughters","179 E Houston St"+C,"Bagel com salmão","comida","Metrô · linha 6 até Bleecker St + 10 min a pé, ~20 min"],
-["10:30","Washington Square Park","Washington Square Park"+C,"Greenwich Village a pé e pendências de compras","passeio","A pé · 20 min"],
-["12:30","Keens Steakhouse","72 W 36th St"+C,"Almoço de despedida · reservado às 12h30 para 2","comida","Metrô · ~15 min"],
-["14:30","Whitney Museum","99 Gansevoort St"+C,"Último museu, sem pressa; vá aos terraços. Confirme o horário de quinta","museu","Metrô · ~20 min"],
+["10:15","Chelsea Market","75 9th Ave"+C,"Café ou lanche rápido","passeio","Metrô · ~25 min"],
+["10:45","High Line","High Line W 16th St entrance"+C,"Subir até a W 22nd St","passeio","A pé · 2 min"],
+["11:15","Comme des Garçons","Comme des Garcons Chelsea"+C,"Loja; perfumes CDG só se não resolveu na DSM","compra","A pé · 2 min da saída da 23rd St"],
+["12:30","Keens Steakhouse","72 W 36th St"+C,"Almoço de despedida · reservado às 12h30 para 2","comida","Metrô ~15 min, ou a pé ~25 min"],
+["14:30","Whitney Museum","99 Gansevoort St"+C,"Último museu; sair até 16:10. Confirme o horário de quinta","museu","Metrô · ~20 min"],
+["16:10","Little Island","Little Island Pier 55"+C,"Volta rápida, em frente ao Whitney","passeio","A pé · 3 min",1],
 ["16:30","Freehand: malas",H,"Sair até 17:00","hotel","Metrô · L de 8 Av até 3 Av + 10 min a pé, ~25 min"],
 ["18:15","Aeroporto JFK","JFK Airport Terminal 4","Voo às 21:15 · chegar 3h antes · confirme o terminal da Delta","","Metrô · linha 6 até Lexington Av/53 St, linha E até Sutphin Blvd e AirTrain, ~75 min"]]},
 {k:"compras",n:"$",lbl:"Compras",title:"Lista de compras",sub:"Uniqlo e Muji ficam na sexta, 30/10, no SoHo",c:"--fg",shop:true},
@@ -194,9 +193,9 @@ const TODO=["Rocky Horror Show (Studio 54), terça 03/11","Little Shop of Horror
 const SHOP=[
 {store:"3sixteen",when:"Sexta, 14:00 · retirada na quarta, 16:20",items:[
 ["RS-105xk Relaxed Straight · Heavyweight Indigo Kibata","Selvedge 18oz de Okayama · cintura estica ~1–1,5\" com o uso: na dúvida, prove o menor · pedir barra chain stitch e o prazo","$310","https://www.3sixteen.com/collections/denim/products/rs-105xk-relaxed-straight-heavyweight-indigo-kibata"]]},
-{store:"Perfumes",when:"CDG Chelsea e C.O. Bigelow ficam na sexta, 30/10",items:[
-["CDG Hinoki","CDG Chelsea (sexta, 15:45) · e/ou Odeur 53 · 2ª chance: DSM no domingo","≈ $150–190",""],
-["CDG Odeur 53","CDG Chelsea (sexta, 15:45) · e/ou Hinoki · mais difícil de achar","≈ $150–190",""],
+{store:"Perfumes",when:"C.O. Bigelow na sexta; DSM no domingo",items:[
+["CDG Hinoki","Dover Street Market (domingo, 15:25) · e/ou Odeur 53 · 2ª chance: CDG Chelsea na quinta","≈ $150–190",""],
+["CDG Odeur 53","Dover Street Market (domingo, 15:25) · e/ou Hinoki · mais difícil de achar","≈ $150–190",""],
 ["Arquiste Sydney Rock Pool","C.O. Bigelow (sexta, 15:00) · 2ª chance: Stéle no domingo","$225",""],
 ["Aesop Hwyl (opcional)","Aesop Rockefeller Center (segunda, 12:00) ou Aesop Williamsburg (domingo)","",""],
 ["Dries Van Noten Cannabis Patchouli (opcional)","Bergdorf Goodman (segunda, 10:30)","",""]]},
@@ -243,7 +242,7 @@ function show(i){const d=DAYS[i];
   if(d.shop){h+=renderShop();}
   else if(d.check){h+=`<section class="panel"><h3>Garantir antes da viagem</h3><ol class="line" style="--line:var(--rule)">`+
     TODO.map((t,j)=>{const id="todo-"+j,on=store[id];return `<li class="stop ${on?"done":""}"><button class="dot" data-id="${id}" aria-pressed="${!!on}" aria-label="Marcar ${esc(t)}"></button><div class="card"><p class="name" style="font-size:.92rem">${esc(t)}</p></div></li>`}).join("")+
-    `</ol></section><section class="panel"><h3>Perfumes: onde testar</h3><ul><li>CDG Hinoki e Odeur 53: CDG Chelsea (sexta). 2ª chance: DSM (domingo)</li><li>Arquiste Sydney Rock Pool: C.O. Bigelow (sexta). 2ª chance: Stéle Williamsburg (domingo)</li><li>Opcional — Aesop Hwyl: Aesop Rockefeller Center (segunda) ou Aesop Williamsburg (domingo)</li><li>Opcional — Dries Van Noten Cannabis Patchouli: Bergdorf Goodman (segunda)</li></ul></section><section class="panel"><h3>Lembretes</h3><ul><li>Metrô: encoste sempre o mesmo cartão ou celular na catraca (OMNY). A semana sai por cerca de $35.</li><li>Domingo 01/11 acaba o horário de verão: o relógio volta 1 hora.</li><li>Clima: 8 a 15 °C com vento. Camadas e tênis confortável.</li></ul></section>`;}
+    `</ol></section><section class="panel"><h3>Perfumes: onde testar</h3><ul><li>CDG Hinoki e Odeur 53: Dover Street Market (domingo). 2ª chance: CDG Chelsea (quinta)</li><li>Arquiste Sydney Rock Pool: C.O. Bigelow (sexta). 2ª chance: Stéle Williamsburg (domingo)</li><li>Opcional — Aesop Hwyl: Aesop Rockefeller Center (segunda) ou Aesop Williamsburg (domingo)</li><li>Opcional — Dries Van Noten Cannabis Patchouli: Bergdorf Goodman (segunda)</li></ul></section><section class="panel"><h3>Lembretes</h3><ul><li>Metrô: encoste sempre o mesmo cartão ou celular na catraca (OMNY). A semana sai por cerca de $35.</li><li>Domingo 01/11 acaba o horário de verão: o relógio volta 1 hora.</li><li>Clima: 8 a 15 °C com vento. Camadas e tênis confortável.</li></ul></section>`;}
   else{const r=routeUrl(d.stops);
     h+=`<div class="actions">${r?`<a class="btn primary" href="${r}" target="_blank" rel="noopener">Rota do dia no Maps</a>`:""}<div class="legend"><span><i class="sw"></i>principal</span><span><i class="sw o"></i>opcional</span></div></div>`;
     h+=`<ol class="line" style="--line:var(${d.c})">`+d.stops.map((s,j)=>{const id=d.k+"-"+j,on=store[id],opt=!!s[6];
