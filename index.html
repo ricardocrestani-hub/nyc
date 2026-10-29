@@ -92,11 +92,12 @@ section.panel ul{margin:0;padding-left:18px;display:flex;flex-direction:column;g
 <main><div class="wrap" id="view"></div></main>
 
 <script>
-const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY";
+const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY", H="Freehand New York, 23 Lexington Ave, New York, NY";
 // [hora, nome, endereço, nota, tag, deslocamento desde a parada anterior, opcional]
 const DAYS=[
 {k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"Nolita, Chelsea e West Village",c:"--l1",stops:[
-["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","Início do dia"],
+["Manhã","Chegada ao Freehand",H,"Deixar as malas; o check-in costuma ser à tarde","hotel","Do JFK: AirTrain + metrô · ~75 min"],
+["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","Metrô · linha 6 de 23 St até Spring St, ~15 min"],
 ["12:40","Uniqlo SoHo","546 Broadway"+C,"Flagship global; ver aba Compras","compra","A pé · 5 min"],
 ["13:30","Muji SoHo","455 Broadway"+C,"Ver aba Compras","compra","A pé · 7 min"],
 ["14:00","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","A pé · 10 min"],
@@ -108,19 +109,21 @@ const DAYS=[
 ["17:40","Little Island","Little Island Pier 55"+C,"Pôr do sol por volta de 17h50","passeio","A pé · 5 min"],
 ["18:15","Respiro no West Village","Bleecker St and Bank St"+C,"Tempo livre: um café, um drink ou voltar ao hotel antes do jantar","passeio","A pé · 10 min"],
 ["19:45","Julius'","159 W 10th St"+C,"Jantar: hambúrguer","comida","A pé · 15 min"],
-["21:00","Stonewall Inn","53 Christopher St"+C,"Drink","bar","A pé · 3 min"]]},
+["21:00","Stonewall Inn","53 Christopher St"+C,"Drink","bar","A pé · 3 min"],
+["Fim","Volta ao Freehand",H,"","hotel","Metrô · F/M de W 4th St até 23 St + 10 min a pé, ~20 min (ou a pé ~30 min)"]]},
 {k:"sab",n:"2",lbl:"Sáb 31",title:"Sábado 31/10",sub:"Central Park, Museu de História Natural e Halloween nas ruas",c:"--l4",stops:[
-["8:30","Lexington Candy Shop","1226 Lexington Ave"+C,"Café da manhã em diner clássico","comida","Início do dia"],
+["8:30","Lexington Candy Shop","1226 Lexington Ave"+C,"Café da manhã em diner clássico","comida","Metrô · linha 6 de 23 St até 86 St, ~20 min"],
 ["9:15","Central Park","Bethesda Terrace Central Park"+C,"Atravessar pelo Bethesda Terrace e o Ramble até o museu","passeio","A pé · ~40 min, passeando"],
 ["10:00","Museu de História Natural","200 Central Park West"+C,"Na abertura, com calma: dinossauros, Rose Center e sala dos oceanos","museu","A pé"],
 ["14:00","Gray's Papaya","2090 Broadway"+C,"Almoço rápido: cachorro-quente","comida","A pé · 10 min"],
-["14:30","Hotel","","Descanso e fantasia","","Metrô"],
-["16:00","Halloween das crianças no West Village","Bleecker St and Perry St"+C,"Ruas residenciais com casas decoradas e crianças pedindo doces: Perry, Charles, Bank e W 10th St","passeio","Metrô"],
+["14:30","Freehand",H,"Descanso e fantasia","hotel","Metrô · linha 1 de 72 St até 23 St + 10 min a pé, ~30 min"],
+["16:00","Halloween das crianças no West Village","Bleecker St and Perry St"+C,"Ruas residenciais com casas decoradas e crianças pedindo doces: Perry, Charles, Bank e W 10th St","passeio","Metrô · ~20 min (ou a pé ~30 min)"],
 ["17:45","L'Industrie West Village","L'Industrie Pizzeria Christopher St"+C,"Fatia rápida antes da parada. Se a fila estiver grande: Joe's Pizza (Carmine St)","comida","A pé · 5 min"],
 ["19:00","Village Halloween Parade","Canal St and 6th Ave"+C,"Fila para desfilar: 18h30 a 21h","passeio","A pé · 10 min"],
-["23:00","Wo Hop","17 Mott St"+C,"Cantonês tarde da noite","comida","A pé · ~20 min"]]},
+["23:00","Wo Hop","17 Mott St"+C,"Cantonês tarde da noite","comida","A pé · ~20 min"],
+["Fim","Volta ao Freehand",H,"","hotel","Metrô · linha 6 de Canal St até 23 St, ~15 min"]]},
 {k:"dom",n:"3",lbl:"Dom 01",title:"Domingo 01/11",sub:"Brooklyn, NoMad e Williamsburg · o relógio volta 1 hora",c:"--l3",stops:[
-["10:00","Katz's Delicatessen","205 E Houston St"+C,"Brunch de pastrami","comida","Início do dia"],
+["10:00","Katz's Delicatessen","205 E Houston St"+C,"Brunch de pastrami","comida","Metrô · linha 6 até Bleecker St + 10 min a pé, ~20 min"],
 ["11:15","Brooklyn Bridge","Brooklyn Bridge pedestrian walkway"+C,"Travessia a pé, ~35 min","passeio","Metrô · ~15 min até a ponte"],
 ["12:00","DUMBO","Washington St and Water St"+B,"Foto clássica da Washington St","passeio","A pé · fim da ponte"],
 ["12:30","Ven.Space","369 Court St"+B,"Lemaire, Comoli, The Row · Carroll Gardens; aberta 12h–18h","compra","Metrô · linha F York St → Carroll St, ~10 min + 5 a pé",1],
@@ -132,9 +135,10 @@ const DAYS=[
 ["17:10","Stéle Williamsburg","339 Bedford Ave"+B,"Arquiste, só se não resolveu na C.O. Bigelow; fecha 18h","perfume","A pé · 8 min",1],
 ["17:45","Aesop Williamsburg","85 N 3rd St"+B,"Aesop Hwyl, se não passou na Aesop de segunda","perfume","A pé · 12 min",1],
 ["18:00","The Four Horsemen","295 Grand St"+B,"Vinho e petiscos, não jantar completo · sair até 20:00","comida","A pé · 10 min"],
-["20:45","Uka Omakase","238 E 60th St"+C,"Jantar · reservado às 20h45 · 16 tempos, ~75 min","comida","Metrô · L + 4/5/6, ~40 min"]]},
+["20:45","Uka Omakase","238 E 60th St"+C,"Jantar · reservado às 20h45 · 16 tempos, ~75 min","comida","Metrô · L + 4/5/6, ~40 min"],
+["Fim","Volta ao Freehand",H,"","hotel","Metrô · linha 6 de 59 St até 23 St, ~15 min"]]},
 {k:"seg",n:"4",lbl:"Seg 02",title:"Segunda 02/11",sub:"Midtown",c:"--l2",stops:[
-["9:00","S&P Lunch","174 5th Ave"+C,"Café da manhã de balcão","comida","Início do dia"],
+["9:00","S&P Lunch","174 5th Ave"+C,"Café da manhã de balcão","comida","A pé · ~8 min do hotel"],
 ["10:30","Bergdorf Goodman","754 5th Ave"+C,"Perfume DVN Cannabis Patchouli e loja masculina em frente","perfume","Metrô · ~15 min",1],
 ["11:30","Uniqlo 5th Avenue","Uniqlo Fifth Avenue"+C,"Para a amiga; suas compras já ficaram na sexta","compra","A pé · 7 min (ou metrô ~15 min, se pular a Bergdorf)",1],
 ["12:00","Aesop Rockefeller Center","610 5th Ave"+C,"Aesop Hwyl","perfume","A pé · 5 min",1],
@@ -147,9 +151,10 @@ const DAYS=[
 ["17:30","The Modern","9 W 53rd St"+C,"Drink no Bar Room","bar","Mesmo prédio"],
 ["19:30","Top of the Rock","30 Rockefeller Plaza"+C,"Vista noturna","passeio","A pé · 7 min"],
 ["20:15","Macy's Herald Square","151 W 34th St"+C,"Para a amiga; confirmar horário","compra","Metrô · ~10 min"],
-["21:00","Jongro BBQ","Jongro BBQ 22 W 32nd St"+C,"Sem reserva, lista de espera","comida","A pé · 5 min"]]},
+["21:00","Jongro BBQ","Jongro BBQ 22 W 32nd St"+C,"Sem reserva, lista de espera","comida","A pé · 5 min"],
+["Fim","Volta ao Freehand",H,"","hotel","A pé · ~15 min"]]},
 {k:"ter",n:"5",lbl:"Ter 03",title:"Terça 03/11",sub:"Chinatown, ferry até Greenpoint e Rocky Horror",c:"--l5",stops:[
-["9:30","Golden Diner","123 Madison St"+C,"Café da manhã; costuma ter fila","comida","Início do dia"],
+["9:30","Golden Diner","123 Madison St"+C,"Café da manhã; costuma ter fila","comida","Metrô · linha 6 até Canal St + 15 min a pé, ~25 min"],
 ["11:00","Doyers Street","Doyers St"+C,"Chinatown a pé: Mott St e Columbus Park","passeio","A pé · 10 min"],
 ["12:30","Nom Wah Tea Parlor","13 Doyers St"+C,"Dividir alguns dim sums","comida","A pé"],
 ["13:15","Joe's Shanghai","Joe's Shanghai Chinatown"+C,"Xiaolongbao","comida","A pé · 3 min"],
@@ -159,9 +164,10 @@ const DAYS=[
 ["16:00","Sarge's Deli","548 3rd Ave"+C,"Pastrami ou sopa de matzá","comida","A pé · 10 min do píer"],
 ["19:00","The Rocky Horror Show","Studio 54 254 W 54th St"+C,"Studio 54","teatro","Metrô · ~25 min"],
 ["21:30","Jimmy's Corner","140 W 44th St"+C,"Bar raiz com tema de boxe","bar","A pé · 12 min"],
-["22:30","Adel's Famous Halal Food","Adel's Famous Halal Food 6th Ave and W 49th St"+C,"Lanche da noite; abre 18h–5h, fila menor mais tarde","comida","A pé · ~8 min",1]]},
+["22:30","Adel's Famous Halal Food","Adel's Famous Halal Food 6th Ave and W 49th St"+C,"Lanche da noite; abre 18h–5h, fila menor mais tarde","comida","A pé · ~8 min",1],
+["Fim","Volta ao Freehand",H,"","hotel","Metrô · R/W de 49 St (ou Times Sq) até 23 St + 6 min a pé, ~15 min"]]},
 {k:"qua",n:"6",lbl:"Qua 04",title:"Quarta 04/11",sub:"Queens, East Village e Hell's Kitchen",c:"--l6",stops:[
-["9:30","Court Square Diner","Court Square Diner"+Q,"Café da manhã","comida","Início do dia"],
+["9:30","Court Square Diner","Court Square Diner"+Q,"Café da manhã","comida","Metrô · linha 6 até Grand Central e linha 7 até Court Sq, ~25 min"],
 ["10:30","Noguchi Museum","9-01 33rd Rd"+Q,"","museu","Ônibus Q103 · ~15 min"],
 ["13:00","Carnitas Ramirez","210 E 3rd St"+C,"Almoço rápido: carnitas a $5 cada","comida","Ônibus + metrô · ~40 min"],
 ["14:00","Tokio 7","Tokio 7 E 7th St"+C,"Brechó de marcas japonesas","compra","A pé · 7 min"],
@@ -171,14 +177,15 @@ const DAYS=[
 ["16:20","3sixteen","190 Elizabeth St"+C,"Retirar o jeans; fecha 19h","compra","A pé · ~12 min"],
 ["17:00","Momofuku Noodle Bar","171 1st Ave"+C,"Jantar · reservado às 17h · sair até 18:20","comida","A pé · ~15 min"],
 ["19:00","Little Shop of Horrors","Westside Theatre 407 W 43rd St"+C,"Westside Theatre","teatro","Metrô · ~30 min"],
-["21:00","Rudy's Bar & Grill","627 9th Ave"+C,"E os bares da 9th Ave","bar","A pé · 3 min"]]},
+["21:00","Rudy's Bar & Grill","627 9th Ave"+C,"E os bares da 9th Ave","bar","A pé · 3 min"],
+["Fim","Volta ao Freehand",H,"","hotel","Metrô · linha 7 de Times Sq até Grand Central e linha 6 até 23 St, ~25 min"]]},
 {k:"qui",n:"7",lbl:"Qui 05",title:"Quinta 05/11",sub:"Despedida",c:"--l7",stops:[
-["9:00","Russ & Daughters","179 E Houston St"+C,"Bagel com salmão","comida","Início do dia"],
+["9:00","Russ & Daughters","179 E Houston St"+C,"Bagel com salmão","comida","Metrô · linha 6 até Bleecker St + 10 min a pé, ~20 min"],
 ["10:30","Washington Square Park","Washington Square Park"+C,"Greenwich Village a pé e pendências de compras","passeio","A pé · 20 min"],
 ["12:30","Keens Steakhouse","72 W 36th St"+C,"Almoço de despedida · reservado às 12h30 para 2","comida","Metrô · ~15 min"],
 ["14:30","Whitney Museum","99 Gansevoort St"+C,"Último museu, sem pressa; vá aos terraços. Confirme o horário de quinta","museu","Metrô · ~20 min"],
-["16:30","Hotel e malas","","Sair até 17:00","","Metrô"],
-["18:15","Aeroporto JFK","JFK Airport Terminal 4","Voo às 21:15 · chegar 3h antes · confirme o terminal da Delta","","Metrô linha E ou A + AirTrain · ~75 min"]]},
+["16:30","Freehand: malas",H,"Sair até 17:00","hotel","Metrô · L de 8 Av até 3 Av + 10 min a pé, ~25 min"],
+["18:15","Aeroporto JFK","JFK Airport Terminal 4","Voo às 21:15 · chegar 3h antes · confirme o terminal da Delta","","Metrô · linha 6 até Lexington Av/53 St, linha E até Sutphin Blvd e AirTrain, ~75 min"]]},
 {k:"compras",n:"$",lbl:"Compras",title:"Lista de compras",sub:"Uniqlo e Muji ficam na sexta, 30/10, no SoHo",c:"--fg",shop:true},
 {k:"antes",n:"✓",lbl:"Antes",title:"Antes de ir",sub:"Ingressos, reservas e horários",c:"--fg",check:true}
 ];
