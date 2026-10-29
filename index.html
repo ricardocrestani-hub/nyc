@@ -97,13 +97,14 @@ const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY";
 const DAYS=[
 {k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"Nolita, Chelsea e West Village",c:"--l1",stops:[
 ["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","Início do dia"],
-["12:45","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","A pé · 8 min"],
-["13:15","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min"],
-["13:40","&Son","138 Sullivan St"+C,"Menswear independente, cerâmica, livros e vintage; aberta 11h–19h","compra","A pé · 15 min"],
-["14:30","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada","compra","A pé · 15 min"],
-["15:00","C.O. Bigelow","414 6th Ave"+C,"<strong>Perfume principal:</strong> Arquiste Sydney Rock Pool","perfume","A pé · 5 min"],
-["15:45","Comme des Garçons","Comme des Garcons Chelsea"+C,"<strong>Perfume principal:</strong> CDG Hinoki e Odeur 53","perfume","A pé · ~25 min, ou metrô ~15 min"],
-["16:30","High Line + Chelsea Market","High Line W 23rd St entrance"+C,"Descer até a Gansevoort St, com lanche no Chelsea Market","passeio","A pé · 2 min"],
+["12:40","Uniqlo SoHo","546 Broadway"+C,"Flagship global; ver aba Compras","compra","A pé · 5 min"],
+["13:30","Muji SoHo","455 Broadway"+C,"Ver aba Compras","compra","A pé · 7 min"],
+["14:00","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","A pé · 10 min"],
+["14:30","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min",1],
+["15:00","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada às 15h","compra","Metrô · ~20 min"],
+["15:30","C.O. Bigelow","414 6th Ave"+C,"<strong>Perfume principal:</strong> Arquiste Sydney Rock Pool","perfume","A pé · 5 min"],
+["16:15","Comme des Garçons","Comme des Garcons Chelsea"+C,"<strong>Perfume principal:</strong> CDG Hinoki e Odeur 53","perfume","A pé · ~25 min, ou metrô ~15 min"],
+["16:45","High Line + Chelsea Market","High Line W 23rd St entrance"+C,"Descer até a Gansevoort St, com lanche no Chelsea Market","passeio","A pé · 2 min"],
 ["17:40","Little Island","Little Island Pier 55"+C,"Pôr do sol por volta de 17h50","passeio","A pé · 5 min"],
 ["18:10","Whitney Museum","99 Gansevoort St"+C,"Depois do pôr do sol; aberto até tarde às sextas (confirmar)","museu","A pé · 5 min"],
 ["19:45","Julius'","159 W 10th St"+C,"Jantar: hambúrguer","comida","A pé · 15 min"],
@@ -135,11 +136,11 @@ const DAYS=[
 {k:"seg",n:"4",lbl:"Seg 02",title:"Segunda 02/11",sub:"Midtown",c:"--l2",stops:[
 ["9:00","S&P Lunch","174 5th Ave"+C,"Café da manhã de balcão","comida","Início do dia"],
 ["10:30","Bergdorf Goodman","754 5th Ave"+C,"Perfume DVN Cannabis Patchouli e loja masculina em frente","perfume","Metrô · ~15 min",1],
-["11:30","Uniqlo 5th Avenue","Uniqlo Fifth Avenue"+C,"Flagship; ver aba Compras","compra","A pé · 7 min (ou metrô ~15 min, se pular a Bergdorf)"],
+["11:30","Uniqlo 5th Avenue","Uniqlo Fifth Avenue"+C,"Para a amiga; suas compras já ficaram na sexta","compra","A pé · 7 min (ou metrô ~15 min, se pular a Bergdorf)",1],
 ["12:00","Aesop Rockefeller Center","610 5th Ave"+C,"Aesop Hwyl","perfume","A pé · 5 min",1],
 ["12:15","Nintendo NY","10 Rockefeller Plaza"+C,"","compra","A pé · 2 min"],
 ["12:40","Rough Trade NYC","1250 6th Ave"+C,"Vinil","compra","A pé · 3 min",1],
-["13:00","Muji Fifth Avenue","475 5th Ave"+C,"Ver aba Compras","compra","A pé · 12 min"],
+["13:00","Muji Fifth Avenue","475 5th Ave"+C,"Só se faltou algo na Muji SoHo","compra","A pé · 12 min",1],
 ["13:45","Gallaghers","228 W 52nd St"+C,"Almoço: 3 pratos por $34","comida","A pé · ~20 min, ou metrô ~10 min"],
 ["13:45","The Halal Guys","The Halal Guys W 53rd St and 6th Ave"+C,"Alternativa rápida ao Gallaghers: carrinho original, a uma quadra do MoMA","comida","A pé · ~15 min",1],
 ["14:30","MoMA","11 W 53rd St"+C,"Até o fechamento","museu","A pé · 10 min"],
@@ -165,8 +166,9 @@ const DAYS=[
 ["13:00","Carnitas Ramirez","210 E 3rd St"+C,"Almoço rápido: carnitas a $5 cada","comida","Ônibus + metrô · ~40 min"],
 ["14:00","Tokio 7","Tokio 7 E 7th St"+C,"Brechó de marcas japonesas","compra","A pé · 7 min"],
 ["14:45","A-1 Record Shop","A-1 Record Shop E 6th St"+C,"Vinil usado","compra","A pé · 5 min",1],
-["15:15","C'H'C'M'","2 Bond St"+C,"Menswear independente de alto padrão; confirmar horário","compra","A pé · ~15 min"],
-["16:00","3sixteen","190 Elizabeth St"+C,"Retirar o jeans; fecha 19h","compra","A pé · ~10 min"],
+["15:10","C'H'C'M'","2 Bond St"+C,"Menswear independente de alto padrão; confirmar horário","compra","A pé · ~15 min"],
+["15:45","&Son","138 Sullivan St"+C,"Menswear independente, cerâmica, livros e vintage; aberta 11h–19h","compra","A pé · ~12 min",1],
+["16:20","3sixteen","190 Elizabeth St"+C,"Retirar o jeans; fecha 19h","compra","A pé · ~12 min"],
 ["17:00","Momofuku Noodle Bar","171 1st Ave"+C,"Jantar · reservado às 17h · sair até 18:20","comida","A pé · ~15 min"],
 ["19:00","Little Shop of Horrors","Westside Theatre 407 W 43rd St"+C,"Westside Theatre","teatro","Metrô · ~30 min"],
 ["21:00","Rudy's Bar & Grill","627 9th Ave"+C,"E os bares da 9th Ave","bar","A pé · 3 min"]]},
@@ -176,13 +178,13 @@ const DAYS=[
 ["12:30","Keens Steakhouse","72 W 36th St"+C,"Almoço de despedida · reservado às 12h30 para 2","comida","Metrô · ~15 min"],
 ["Tarde","Pendências","","Compras que ficaram para trás","",""],
 ["Noite","Aeroporto","","","",""]]},
-{k:"compras",n:"$",lbl:"Compras",title:"Lista de compras",sub:"Uniqlo e Muji ficam na segunda, 02/11",c:"--fg",shop:true},
+{k:"compras",n:"$",lbl:"Compras",title:"Lista de compras",sub:"Uniqlo e Muji ficam na sexta, 30/10, no SoHo",c:"--fg",shop:true},
 {k:"antes",n:"✓",lbl:"Antes",title:"Antes de ir",sub:"Ingressos, reservas e horários",c:"--fg",check:true}
 ];
-const TODO=["Rocky Horror Show (Studio 54), terça 03/11","Little Shop of Horrors, quarta 04/11","Top of the Rock, noite de segunda","MoMA, segunda à tarde","Reserva: Uka Omakase (domingo, 20h45) — feita","Four Horsemen (domingo, 18h): balcão sem reserva ou reservar","Reserva: Balthazar (sexta, 11h30) — feita","Reserva: Keens (quinta, 12h30) — feita","Reserva: Momofuku (quarta, 17h) — feita","Horários do NYC Ferry na terça (app NYC Ferry)","Hora marcada na J. Mueser (sexta, 14h30)","Fantasia para a parada","Horários: Issey Miyake no domingo, C.O. Bigelow, C'H'C'M', Macy's, Noguchi"];
+const TODO=["Rocky Horror Show (Studio 54), terça 03/11","Little Shop of Horrors, quarta 04/11","Top of the Rock, noite de segunda","MoMA, segunda à tarde","Reserva: Uka Omakase (domingo, 20h45) — feita","Four Horsemen (domingo, 18h): balcão sem reserva ou reservar","Reserva: Balthazar (sexta, 11h30) — feita","Reserva: Keens (quinta, 12h30) — feita","Reserva: Momofuku (quarta, 17h) — feita","Horários do NYC Ferry na terça (app NYC Ferry)","Hora marcada na J. Mueser (sexta, 15h)","Fantasia para a parada","Horários: Issey Miyake no domingo, C.O. Bigelow, C'H'C'M', Macy's, Noguchi"];
 
 const SHOP=[
-{store:"3sixteen",when:"Sexta, 12:00 · retirada na quarta, 16:00",items:[
+{store:"3sixteen",when:"Sexta, 14:00 · retirada na quarta, 16:20",items:[
 ["RS-105xk Relaxed Straight · Heavyweight Indigo Kibata","Selvedge 18oz de Okayama · cintura estica ~1–1,5\" com o uso: na dúvida, prove o menor · pedir barra chain stitch e o prazo","$310","https://www.3sixteen.com/collections/denim/products/rs-105xk-relaxed-straight-heavyweight-indigo-kibata"]]},
 {store:"Perfumes",when:"CDG Chelsea e C.O. Bigelow ficam na sexta, 30/10",items:[
 ["CDG Hinoki","CDG Chelsea (sexta, 15:45) · e/ou Odeur 53 · 2ª chance: DSM no domingo","≈ $150–190",""],
@@ -190,7 +192,7 @@ const SHOP=[
 ["Arquiste Sydney Rock Pool","C.O. Bigelow (sexta, 15:00) · 2ª chance: Stéle no domingo","$225",""],
 ["Aesop Hwyl (opcional)","Aesop Rockefeller Center (segunda, 12:00) ou Aesop Williamsburg (domingo)","",""],
 ["Dries Van Noten Cannabis Patchouli (opcional)","Bergdorf Goodman (segunda, 10:30)","",""]]},
-{store:"Uniqlo 5th Avenue",when:"Segunda, 11:30",items:[
+{store:"Uniqlo SoHo (546 Broadway)",when:"Sexta, 12:40 · se faltar algo: Uniqlo 5th Ave, segunda",items:[
 ["Barrel Jeans | Corduroy","Brown · 30","≈ $50","https://www.uniqlo.com/us/en/products/E487207-000/00?colorDisplayCode=34&sizeDisplayCode=030"],
 ["Flannel Shirt","Dark Green · S","≈ $40","https://www.uniqlo.com/us/en/products/E488795-000/00?colorDisplayCode=58&sizeDisplayCode=003"],
 ["Straight Jeans | Selvedge | Tall","Navy · 29 · Tall costuma ser só online","≈ $60","https://www.uniqlo.com/us/en/products/E488686-000/00?colorDisplayCode=69&sizeDisplayCode=029"],
@@ -201,7 +203,7 @@ const SHOP=[
 ["Meias","Pretas + cores novas","≈ $15–30",""],
 ["Cuecas","3 unidades","≈ $30–45",""],
 ["Guarda-chuva e acessórios","Só olhar","",""]]},
-{store:"Muji Fifth Avenue",when:"Segunda, 13:00",items:[
+{store:"Muji SoHo (455 Broadway)",when:"Sexta, 13:30 · se faltar algo: Muji 5th Ave, segunda",items:[
 ["Padded Hanten Jacket","Khaki Green ou Black","$89.90","https://www.muji.us/products/padded-hanten-jacket-ad10g26a"],
 ["Straight Design Knot Button Shirt","Navy, Light Gray Stripe ou Mocha Brown Stripe · estoque online instável","$49.90","https://www.muji.us/products/straight-design-knot-button-shirt-ac25026a"],
 ["Hakama Pants","Black · S · esgotado online, ver na loja","$79.90","https://www.muji.us/products/hakama-pants-ae12h26a?variant=47679426035902"]]}
