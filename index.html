@@ -97,14 +97,14 @@ const C=", New York, NY", B=", Brooklyn, NY", Q=", Long Island City, NY", H="Fre
 const DAYS=[
 {k:"sex",n:"1",lbl:"Sex 30",title:"Sexta 30/10",sub:"SoHo e Village, soneca, jantar no amigo e festa no Brooklyn",c:"--l1",stops:[
 ["9:30","Chegada ao Freehand",H,"Deixar as malas, se arrumar; sair por volta das 10:15","hotel","Do JFK: AirTrain + metrô · ~75 min"],
-["10:15","Union Square Greenmarket","Union Square Greenmarket"+C,"Feira de produtores; sexta é dia de feira. Um café e uma volta","passeio","A pé · ~12 min"],
-["10:45","Strand Bookstore","828 Broadway"+C,"Livraria clássica, abre às 10h","compra","A pé · 5 min"],
-["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","Metrô · linha 6 de Union Sq até Spring St, ~15 min (sair 11:10)"],
+["10:15","Union Square Greenmarket","Union Square Greenmarket"+C,"Café rápido na feira, no caminho do metrô. Se pular, vá direto à Muji","passeio","A pé · ~12 min",1],
+["10:45","Muji SoHo","455 Broadway"+C,"Ver aba Compras; abre às 10h · sair 11:20","compra","Metrô · linha 6 até Spring St, ~10 min"],
+["11:30","Balthazar","80 Spring St"+C,"Almoço · reservado às 11h30","comida","A pé · 7 min"],
 ["12:40","Uniqlo SoHo","546 Broadway"+C,"Flagship global; ver aba Compras","compra","A pé · 5 min"],
-["13:30","Muji SoHo","455 Broadway"+C,"Ver aba Compras","compra","A pé · 7 min"],
-["14:00","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","A pé · 10 min"],
-["14:30","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min",1],
-["15:00","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada às 15h","compra","Metrô · ~20 min"],
+["13:40","3sixteen","190 Elizabeth St"+C,"Comprar o jeans, pedir a barra e o prazo","compra","A pé · 12 min"],
+["14:05","18 East","146 Elizabeth St"+C,"Na mesma rua","compra","A pé · 3 min",1],
+["14:25","Strand Bookstore","828 Broadway"+C,"Livraria clássica, no caminho da J. Mueser","compra","A pé · ~15 min",1],
+["15:00","J. Mueser","14 Christopher St"+C,"Terno para o Carlos, com hora marcada às 15h","compra","A pé · ~15 min da Strand, ou metrô ~20 min de Nolita"],
 ["15:30","C.O. Bigelow","414 6th Ave"+C,"<strong>Perfume principal:</strong> Arquiste Sydney Rock Pool","perfume","A pé · 5 min"],
 ["16:00","Freehand: compras e soneca",H,"Deixar as sacolas e descansar","hotel","Metrô · F/M de W 4th St até 23 St + 10 min a pé, ~20 min"],
 ["17:30","Jantar na casa do amigo","","No pôr do sol, por volta de 17h50","comida","Endereço a definir"],
@@ -193,7 +193,7 @@ const DAYS=[
 const TODO=["Rocky Horror Show (Studio 54), terça 03/11","Little Shop of Horrors, quarta 04/11","Top of the Rock, noite de segunda","MoMA, segunda à tarde","Reserva: Uka Omakase (domingo, 20h45) — feita","Four Horsemen (domingo, 18h): balcão sem reserva ou reservar","Reserva: Balthazar (sexta, 11h30) — feita","Reserva: Keens (quinta, 12h30) — feita","Reserva: Momofuku (quarta, 17h) — feita","Horários do NYC Ferry na terça (app NYC Ferry)","Hora marcada na J. Mueser (sexta, 15h)","Fantasia para a parada","Horários: Issey Miyake no domingo, C.O. Bigelow, C'H'C'M', Macy's, Noguchi"];
 
 const SHOP=[
-{store:"3sixteen",when:"Sexta, 14:00 · retirada na quarta, 16:20",items:[
+{store:"3sixteen",when:"Sexta, 13:40 · retirada na quarta, 16:20",items:[
 ["RS-105xk Relaxed Straight · Heavyweight Indigo Kibata","Selvedge 18oz de Okayama · cintura estica ~1–1,5\" com o uso: na dúvida, prove o menor · pedir barra chain stitch e o prazo","$310","https://www.3sixteen.com/collections/denim/products/rs-105xk-relaxed-straight-heavyweight-indigo-kibata"]]},
 {store:"Perfumes",when:"C.O. Bigelow na sexta; DSM no domingo",items:[
 ["CDG Hinoki","Dover Street Market (domingo, 15:25) · e/ou Odeur 53 · 2ª chance: CDG Chelsea na quinta","≈ $150–190",""],
@@ -212,7 +212,7 @@ const SHOP=[
 ["Meias","Pretas + cores novas","≈ $15–30",""],
 ["Cuecas","3 unidades","≈ $30–45",""],
 ["Guarda-chuva e acessórios","Só olhar","",""]]},
-{store:"Muji SoHo (455 Broadway)",when:"Sexta, 13:30 · se faltar algo: Muji 5th Ave, segunda",items:[
+{store:"Muji SoHo (455 Broadway)",when:"Sexta, 10:45 · se faltar algo: Muji 5th Ave, segunda",items:[
 ["Padded Hanten Jacket","Khaki Green ou Black","$89.90","https://www.muji.us/products/padded-hanten-jacket-ad10g26a"],
 ["Straight Design Knot Button Shirt","Navy, Light Gray Stripe ou Mocha Brown Stripe · estoque online instável","$49.90","https://www.muji.us/products/straight-design-knot-button-shirt-ac25026a"],
 ["Hakama Pants","Black · S · esgotado online, ver na loja","$79.90","https://www.muji.us/products/hakama-pants-ae12h26a?variant=47679426035902"],
