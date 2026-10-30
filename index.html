@@ -213,7 +213,16 @@ const SHOP=[
 {store:"Muji SoHo (455 Broadway)",when:"Sexta, 13:30 · se faltar algo: Muji 5th Ave, segunda",items:[
 ["Padded Hanten Jacket","Khaki Green ou Black","$89.90","https://www.muji.us/products/padded-hanten-jacket-ad10g26a"],
 ["Straight Design Knot Button Shirt","Navy, Light Gray Stripe ou Mocha Brown Stripe · estoque online instável","$49.90","https://www.muji.us/products/straight-design-knot-button-shirt-ac25026a"],
-["Hakama Pants","Black · S · esgotado online, ver na loja","$79.90","https://www.muji.us/products/hakama-pants-ae12h26a?variant=47679426035902"]]}
+["Hakama Pants","Black · S · esgotado online, ver na loja","$79.90","https://www.muji.us/products/hakama-pants-ae12h26a?variant=47679426035902"],
+["Nécessaires novas","Transparente e preta · uma grande e uma pequena de cada","",""],
+["Lenços umedecidos de viagem","","",""],
+["Acessórios de viagem","Só olhar","",""],
+["Lapiseiras","Uma para você e uma para o André","",""],
+["Caderno","Para o André","",""],
+["Essência (Aroma oil)","Para o André","",""],
+["Mala grande?","Ver se vale: ajuda a trazer as compras","",""]]},
+{store:"Tênis",when:"Sem loja fixa · encaixar onde passar",items:[
+["Tênis ASICS ou similar","US 9 · prove antes, a forma varia por modelo","",""]]}
 ];
 function renderShop(){return SHOP.map((s,si)=>`<section class="panel"><h3>${esc(s.store)}</h3><p class="hint" style="margin-bottom:8px">${esc(s.when)}</p><ol class="line" style="--line:var(--rule)">`+s.items.map((it,j)=>{const id="shop-"+si+"-"+j,on=store[id];return `<li class="stop ${on?"done":""}"><button class="dot" data-id="${id}" aria-pressed="${!!on}" aria-label="Marcar ${esc(it[0])} como comprado"></button><div class="card"><div class="top"><p class="name" style="font-size:.92rem">${esc(it[0])}</p>${it[2]?`<span class="time">${esc(it[2])}</span>`:""}</div><p class="note">${esc(it[1])}</p>${it[3]?`<a class="maps" href="${it[3]}" target="_blank" rel="noopener">Ver no site</a>`:""}</div></li>`}).join("")+`</ol></section>`).join("")+`<section class="panel"><h3>Estimativa</h3><ul><li>Uniqlo: ≈ $430–470, contando meias e cuecas</li><li>Muji: ≈ $220</li><li>3sixteen: $310 + imposto ≈ $340</li><li>Perfumes: ≈ $390–660, conforme leve 1 ou 2 CDG, com imposto</li><li><strong>Total: ≈ $1.380–1.690</strong></li></ul><p class="hint" style="margin-top:8px">Preços da Uniqlo são aproximados. Tamanhos vieram dos links; confira na loja. Roupas abaixo de $110 por peça não pagam imposto em NY; perfumes pagam 8,875%.</p></section>`;}
 
